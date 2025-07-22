@@ -1,0 +1,568 @@
+/* General Body Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f8f8; /* Jasny, prawie biały */
+    color: #333;
+    overflow-x: hidden; /* Zapobiega poziomemu przewijaniu */
+}
+
+/* Kolory */
+:root {
+    --white: #ffffff;
+    --red-main: #e20000; /* Główny czerwony */
+    --red-dark: #b00000; /* Ciemniejszy czerwony do hover */
+    --text-dark: #333333;
+    --text-light: #f0f0f0;
+}
+
+/* Globalne style dla nagłówków */
+h1, h2, h3 {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Przyciski */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--red-main);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--red-dark);
+    transform: translateY(-3px); /* Delikatne uniesienie */
+}
+
+/* Nawigacja */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--red-main);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--red-main);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--red-main);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Sekcja Hero - index.html */
+.hero {
+    height: 100vh; /* Pełna wysokość ekranu */
+    background-image: url('images/pkw-hero.jpg'); /* Zmień na swoje zdjęcie */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efekt paralaksy */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before { /* Nakładka na zdjęcie */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Ciemniejsza warstwa */
+    z-index: 0;
+}
+
+.hero-content {
+    z-index: 1; /* Upewnij się, że zawartość jest nad nakładką */
+    opacity: 0; /* Dla animacji pojawiania się */
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Płynne przejście */
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: var(--white);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Sekcje CTA (index.html) */
+.cta-sections {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 80px 50px;
+    gap: 30px;
+    background-color: var(--f8f8f8);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cta-box {
+    background-color: var(--white);
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    opacity: 0; /* Dla animacji */
+    transform: translateY(40px);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+.cta-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.cta-box h3 {
+    font-size: 24px;
+    color: var(--red-main);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.cta-box p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.cta-box .icon {
+    font-size: 50px;
+    color: var(--red-main);
+    margin-bottom: 10px;
+}
+
+/* Page content wrapper for inner pages */
+.page-content {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Kalendarz (kalendarz.html) */
+.calendar-section h2 {
+    margin-top: 20px;
+}
+
+.calendar-section p {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.calendar-grid {
+    display: grid;
+    /* Automatyczne dopasowanie kolumn, minimum 280px szerokości na miesiąc */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.month {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background-color: var(--white);
+    opacity: 0; /* Dla animacji */
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.month h3 {
+    text-align: center;
+    color: var(--red-main);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.month .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Kluczowa zmiana: 7 równych kolumn */
+    gap: 8px; /* Zmniejszony odstęp dla lepszego dopasowania */
+    text-align: center; /* Wyśrodkowanie numerów dni */
+}
+
+.day {
+    padding: 10px 5px; /* Mniejszy padding dla ciasnego układu */
+    border: 1px solid #eee;
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: #fcfcfc;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    position: relative; /* Dla tooltipa */
+    font-size: 0.9em; /* Lekko zmniejszony rozmiar czcionki */
+    display: flex; /* Użyj flexboxa, aby zawartość była wyśrodkowana */
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1; /* Utrzymuje kwadratowe proporcje dla dni */
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.day.empty {
+    background-color: transparent;
+    border: none;
+    cursor: default;
+    box-shadow: none; /* Upewnij się, że puste dni nie mają cienia */
+}
+
+.day.event {
+    background-color: var(--red-main);
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.day.event:hover {
+    background-color: var(--red-dark);
+    transform: translateY(-3px);
+}
+
+.event-tooltip {
+    position: fixed; /* Zmieniono na fixed dla lepszego pozycjonowania względem viewportu */
+    background-color: rgba(0, 0, 0, 0.85); /* Ciemniejszy, mniej przezroczysty */
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    z-index: 1001; /* Wyższa wartość, aby tooltip był zawsze na wierzchu */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transform: translate(-50%, -10px); /* Koryguje pozycję względem kursora */
+    pointer-events: none; /* Pozwala klikać przez tooltip */
+}
+
+/* Responsywność dla kalendarza */
+@media (max-width: 600px) {
+    .calendar-grid {
+        grid-template-columns: 1fr; /* Jeden miesiąc na całą szerokość ekranu */
+    }
+
+    .month .days {
+        gap: 5px; /* Mniejsze odstępy na małych ekranach */
+    }
+
+    .day {
+        padding: 8px 4px;
+        font-size: 0.85em;
+    }
+}
+
+
+/* Karty członków (czlonkowie.html) */
+.members-section h2 {
+    margin-top: 20px;
+}
+.members-section p {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 1.1em;
+}
+
+.member-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 50px 0;
+}
+
+.member-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 30px;
+    max-width: 320px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease-out;
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.member-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--red-main);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.member-card h3 {
+    font-size: 26px;
+    margin-bottom: 5px;
+    color: var(--red-main);
+}
+
+.member-card .role {
+    font-size: 18px;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.member-card .bio {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Kontakt (kontakt.html) */
+.contact-section h2 {
+    margin-top: 20px;
+}
+.contact-section p {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #7289da; /* Kolor Discorda */
+    padding: 18px 35px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease, animation 0.8s infinite alternate;
+}
+
+.discord-btn:hover {
+    background-color: #677bc4;
+    transform: scale(1.02);
+}
+
+.discord-btn i {
+    font-size: 1.5em;
+}
+
+.disclaimer {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: -10px;
+}
+
+.additional-contact {
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.additional-contact h3 {
+    color: var(--text-dark);
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.additional-contact p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.additional-contact a {
+    color: var(--red-main);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.additional-contact a:hover {
+    color: var(--red-dark);
+    text-decoration: underline;
+}
+
+
+/* Stopka */
+footer {
+    background-color: var(--red-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 14px;
+    margin-top: 50px;
+}
+
+
+/* Responsywność */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 15px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .cta-sections {
+        padding: 50px 20px;
+    }
+
+    .cta-box {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-cards {
+        gap: 20px;
+    }
+
+    .member-card {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    nav .logo {
+        font-size: 24px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.9em;
+    }
+    .discord-btn {
+        padding: 15px 25px;
+        font-size: 1em;
+    }
+}
+
+/* Animacje CSS */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
